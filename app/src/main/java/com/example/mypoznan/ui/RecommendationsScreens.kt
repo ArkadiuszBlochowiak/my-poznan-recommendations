@@ -1,9 +1,12 @@
 package com.example.mypoznan.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Museum
 import androidx.compose.material.icons.outlined.Park
@@ -63,7 +66,8 @@ fun RecommendationItem(
 
 @Composable
 fun RecommendationItemIcon(
-    category: Category
+    category: Category,
+    modifier: Modifier = Modifier
 ) {
     val iconData: Pair<ImageVector, Int> = when(category) {
         Category.PARK -> Pair(Icons.Outlined.Park, R.string.park)
@@ -73,9 +77,30 @@ fun RecommendationItemIcon(
 
     Icon(
         imageVector = iconData.first,
-        contentDescription = stringResource(iconData.second)
+        contentDescription = stringResource(iconData.second),
+        modifier = modifier
     )
 }
+
+@Composable
+fun RecommendationList(
+    recommendations: List<Recommendation>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        modifier = modifier,
+        verticalArrangement = Arrangement
+            .spacedBy(dimensionResource(R.dimen.padding_medium))
+    ) {
+        items(recommendations, key = {item -> item.id}) { item ->
+            RecommendationItem(
+                item = item
+            )
+        }
+    }
+}
+
+
 
 @Preview(showBackground = true)
 @Composable
@@ -93,6 +118,16 @@ fun RecommendationItemDarkThemePreview() {
     MyPoznanTheme (darkTheme = true) {
         RecommendationItem(
             item = LocalRecommendationDataProvider.defaultRecommendation
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecommendationListPreview() {
+    MyPoznanTheme {
+        RecommendationList(
+            recommendations = LocalRecommendationDataProvider.getAllRecommendations()
         )
     }
 }
