@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">My Poznan</string>
+    
+    <string name="all">All</string>
+    <string name="monument">Monument</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="park">Park</string>
+    
+    <string name="park_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
+        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
+        diam fringilla tellus, eu euismod mauris neque at neque.
+    </string>
+    <string name="malta">Malta park</string>
+    <string name="solacz">Solacz park</string>
+    <string name="cytadela">Cytadela park</string>
+
+    <string name="monument_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
+        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
+        diam fringilla tellus, eu euismod mauris neque at neque.
+    </string>
+    <string name="town_hall">Town hall</string>
+    <string name="national_museum">The national museum in Poznan</string>
+    <string name="old_zoo">Old Zoo</string>
+    <string name="porta">Porta Posnania</string>
+
+    <string name="restaurant_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
+        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
+        diam fringilla tellus, eu euismod mauris neque at neque.
+    </string>
+    <string name="ming_wok">Ming wok</string>
+    <string name="stary_mlyn">Stary mlyn</string>
+    <string name="thali">Thali</string>
+    <string name="pasta_disco">Pasta disco</string>
+
 </resources>
