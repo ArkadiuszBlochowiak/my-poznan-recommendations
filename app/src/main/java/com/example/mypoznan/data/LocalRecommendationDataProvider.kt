@@ -1,14 +1,11 @@
 package com.example.mypoznan.data
 
-import androidx.compose.ui.res.stringResource
 import com.example.mypoznan.R
 import com.example.mypoznan.model.Category
 import com.example.mypoznan.model.Recommendation
 
 object LocalRecommendationDataProvider {
-    val defaultRecommendation = Recommendation(
-        1, R.string.monument, R.string.monument_description, Category.MONUMENT, 0
-    )
+    val defaultRecommendation = getAllRecommendations()[0]
 
     fun getAllRecommendations(): List<Recommendation> {
         return listOf(
@@ -48,5 +45,11 @@ object LocalRecommendationDataProvider {
                 rating = 4
             )
         )
+    }
+
+    fun getCategoryRecommendations(category: Category): List<Recommendation> {
+        return getAllRecommendations().filter {
+            it.category == category
+        }
     }
 }
