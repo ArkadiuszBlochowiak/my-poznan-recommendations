@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -27,6 +30,26 @@ import com.example.mypoznan.data.LocalRecommendationDataProvider
 import com.example.mypoznan.model.Category
 import com.example.mypoznan.model.Recommendation
 import com.example.mypoznan.ui.theme.MyPoznanTheme
+import com.example.mypoznan.ui.utils.CategoryConfig
+
+@Composable
+fun RecommendationList(
+    recommendations: List<Recommendation>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
+        verticalArrangement = Arrangement
+            .spacedBy(dimensionResource(R.dimen.padding_medium))
+    ) {
+        items(recommendations, key = {item -> item.id}) { item ->
+            RecommendationItem(
+                item = item
+            )
+        }
+    }
+}
 
 @Composable
 fun RecommendationItem(
@@ -69,11 +92,7 @@ fun RecommendationItemIcon(
     category: Category,
     modifier: Modifier = Modifier
 ) {
-    val iconData: Pair<ImageVector, Int> = when(category) {
-        Category.PARK -> Pair(Icons.Outlined.Park, R.string.park)
-        Category.RESTAURANT -> Pair(Icons.Outlined.Restaurant, R.string.restaurant)
-        Category.MONUMENT -> Pair(Icons.Outlined.Museum, R.string.monument)
-    }
+    val iconData = CategoryConfig.getCategoryData(category)
 
     Icon(
         imageVector = iconData.first,
@@ -81,26 +100,6 @@ fun RecommendationItemIcon(
         modifier = modifier
     )
 }
-
-@Composable
-fun RecommendationList(
-    recommendations: List<Recommendation>,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(
-        modifier = modifier,
-        verticalArrangement = Arrangement
-            .spacedBy(dimensionResource(R.dimen.padding_medium))
-    ) {
-        items(recommendations, key = {item -> item.id}) { item ->
-            RecommendationItem(
-                item = item
-            )
-        }
-    }
-}
-
-
 
 @Preview(showBackground = true)
 @Composable
