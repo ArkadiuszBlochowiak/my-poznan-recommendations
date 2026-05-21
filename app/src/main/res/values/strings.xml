@@ -38,4 +38,7 @@
     <string name="thali">Thali</string>
     <string name="pasta_disco">Pasta disco</string>
     <string name="kim_chi_ken">Kim chi ken</string>
+
+    <string name="category">Category</string>
+    <string name="rating">Rating</string>
 </resources>

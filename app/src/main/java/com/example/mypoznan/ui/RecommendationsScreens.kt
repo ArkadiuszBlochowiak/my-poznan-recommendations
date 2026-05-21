@@ -1,24 +1,33 @@
 package com.example.mypoznan.ui
 
+import android.text.style.TtsSpan
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.StarRate
+import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material.icons.outlined.Museum
 import androidx.compose.material.icons.outlined.Park
 import androidx.compose.material.icons.outlined.Restaurant
+import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalResources
@@ -29,6 +38,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.mypoznan.R
 import com.example.mypoznan.data.LocalRecommendationDataProvider
 import com.example.mypoznan.model.Category
+import com.example.mypoznan.model.MAX_RATING
+import com.example.mypoznan.model.MIN_RATING
 import com.example.mypoznan.model.Recommendation
 import com.example.mypoznan.ui.theme.MyPoznanTheme
 import com.example.mypoznan.ui.utils.CategoryConfig
@@ -36,7 +47,8 @@ import com.example.mypoznan.ui.utils.CategoryConfig
 @Composable
 fun RecommendationList(
     recommendations: List<Recommendation>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onItemClick: (Recommendation) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier,
@@ -46,7 +58,8 @@ fun RecommendationList(
     ) {
         items(recommendations, key = {item -> item.id}) { item ->
             RecommendationItem(
-                item = item
+                item = item,
+                onItemClick = onItemClick
             )
         }
     }
@@ -55,10 +68,12 @@ fun RecommendationList(
 @Composable
 fun RecommendationItem(
     item: Recommendation,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onItemClick: (Recommendation) -> Unit = {}
 ) {
     Card(
-        modifier = modifier
+        modifier = modifier,
+        onClick = { onItemClick(item) }
     ) {
             Column(
                 modifier = Modifier
@@ -129,6 +144,103 @@ fun RecommendationListPreview() {
         val resources = LocalResources.current
         RecommendationList(
             recommendations = LocalRecommendationDataProvider.getAllRecommendations(resources)
+        )
+    }
+}
+
+@Composable
+fun RecommendationDetails(
+    item: Recommendation,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .padding(dimensionResource(R.dimen.padding_medium))
+    ) {
+        Text(
+            text = stringResource(item.titleRes),
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+        )
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = dimensionResource(R.dimen.padding_small))
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+            ) {
+                Column {
+                    Text(
+                        text = stringResource(R.string.category),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+                    Text(
+                        text = stringResource(R.string.rating),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_large)))
+                Column {
+                    val categoryText = CategoryConfig.getCategoryData(item.category).second
+                    Text(
+                        text = stringResource(categoryText)
+                    )
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+                    RecommendationRating(
+                        rating = item.rating
+                    )
+                }
+            }
+        }
+        Text(
+            text = stringResource(item.descriptionRes)
+        )
+    }
+}
+
+@Composable
+fun RecommendationRating(
+    rating: Int,
+    modifier: Modifier = Modifier
+) {
+    val allStars = MAX_RATING
+    val outlined = allStars - rating
+
+    Row(modifier = modifier) {
+        for (i in MIN_RATING..rating) {
+            Icon(
+                imageVector = Icons.Filled.StarRate,
+                contentDescription = null
+            )
+        }
+        for (i in MIN_RATING..outlined) {
+            Icon(
+                imageVector = Icons.Outlined.StarRate,
+                contentDescription = null
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecommendationRatingPreview() {
+    MyPoznanTheme () {
+        RecommendationRating(
+            rating = LocalRecommendationDataProvider.defaultRecommendation.rating
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecommendationDetailsPreview() {
+    MyPoznanTheme () {
+        RecommendationDetails(
+            item = LocalRecommendationDataProvider.defaultRecommendation
         )
     }
 }

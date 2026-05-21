@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.mypoznan.R
 import com.example.mypoznan.data.LocalRecommendationDataProvider
 import com.example.mypoznan.model.Category
+import com.example.mypoznan.model.Recommendation
 import com.example.mypoznan.ui.utils.MyPoznanNavigationType
 import com.example.mypoznan.ui.utils.NavigationItem
 import com.example.mypoznan.ui.utils.NavigationItemList
@@ -35,6 +36,7 @@ fun RecommendationListScreen(
     uiState: MyPoznanUiState,
     onTabPressed: (Category) -> Unit,
     navigationType: MyPoznanNavigationType,
+    onItemClick: (Recommendation) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val navigationItems: List<NavigationItem> = NavigationItemList.getNavigationList()
@@ -60,6 +62,7 @@ fun RecommendationListScreen(
                 onTabPressed = onTabPressed,
                 navigationType = navigationType,
                 navigationItems = navigationItems,
+                onItemClick = onItemClick,
                 modifier = modifier
             )
         }
@@ -69,6 +72,7 @@ fun RecommendationListScreen(
             onTabPressed = onTabPressed,
             navigationType = navigationType,
             navigationItems = navigationItems,
+            onItemClick = onItemClick,
             modifier = modifier
         )
     }
@@ -80,7 +84,8 @@ fun RecommendationListContent(
     onTabPressed: (Category) -> Unit,
     navigationType: MyPoznanNavigationType,
     navigationItems: List<NavigationItem>,
-    modifier: Modifier = Modifier
+    onItemClick: (Recommendation) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val resources = LocalResources.current
     val list = if(uiState.currentCategory == Category.ALL) {
@@ -104,6 +109,7 @@ fun RecommendationListContent(
         ) {
             RecommendationList(
                 recommendations = list,
+                onItemClick = onItemClick,
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = dimensionResource(R.dimen.padding_medium))
