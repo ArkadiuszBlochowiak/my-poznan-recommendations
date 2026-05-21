@@ -1,5 +1,6 @@
 package com.example.mypoznan.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,15 +24,27 @@ fun MyPoznanApp(
         else -> MyPoznanNavigationType.BOTTOM_NAVIGATION
     }
 
-    RecommendationListScreen(
-        uiState = uiState,
-        onTabPressed = {
-            viewModel.updateCurrentCategory(it)
-        },
-        navigationType = navigationType
-    )
-
-    //condition for details view
+    Box(modifier = modifier) {
+        if (uiState.isShowingMainPage) {
+            RecommendationListScreen(
+                uiState = uiState,
+                onTabPressed = {
+                    viewModel.updateCurrentCategory(it)
+                },
+                navigationType = navigationType,
+                onItemClick = {
+                    viewModel.updateCurrentRecommendation(it)
+                }
+            )
+        } else {
+            RecommendationDetailsScreen(
+                uiState = uiState,
+                onBackEvent = {
+                    viewModel.resetDetailsView()
+                }
+            )
+        }
+    }
 }
 
 
