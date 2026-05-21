@@ -11,14 +11,17 @@ import com.example.mypoznan.model.Category
 
 object CategoryConfig {
 
+    internal val defaultCategory: Pair<ImageVector, Int> = Pair(Icons.Outlined.Category, R.string.all)
+
     private val categoryData: Map<Category, Pair<ImageVector, Int>> = mapOf(
+        Category.ALL to defaultCategory,
         Category.MONUMENT to Pair(Icons.Outlined.Museum, R.string.monument),
         Category.RESTAURANT to Pair(Icons.Outlined.Restaurant, R.string.restaurant),
         Category.PARK to Pair(Icons.Outlined.Park, R.string.park)
     )
 
     fun getCategoryData(category: Category): Pair<ImageVector, Int> {
-       return categoryData[category] ?: Pair(Icons.Outlined.Category, R.string.all)
+       return categoryData[category] ?: defaultCategory
     }
 
     fun getAllCategories(): Map<Category, Pair<ImageVector, Int>> {

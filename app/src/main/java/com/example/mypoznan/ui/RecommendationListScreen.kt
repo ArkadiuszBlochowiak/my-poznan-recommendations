@@ -23,7 +23,11 @@ fun RecommendationListScreen(
     onTabPressed: (Category) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val list = LocalRecommendationDataProvider.getCategoryRecommendations(uiState.currentCategory)
+    val list = if(uiState.currentCategory == Category.ALL) {
+        LocalRecommendationDataProvider.getAllRecommendations()
+    } else {
+        LocalRecommendationDataProvider.getCategoryRecommendations(uiState.currentCategory)
+    }
     val navigationItems: List<NavigationItem> = NavigationItemList.getNavigationList()
 
     Column(
