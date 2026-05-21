@@ -11,12 +11,15 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.Surface
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import com.example.mypoznan.ui.MyPoznanApp
 import com.example.mypoznan.ui.theme.MyPoznanTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -31,7 +34,9 @@ class MainActivity : ComponentActivity() {
                             .calculateEndPadding(layoutDirection)
                     )
                 ) {
-                    MyPoznanApp()
+                    val windowSize = calculateWindowSizeClass(this)
+                    MyPoznanApp(
+                        windowSize = windowSize.widthSizeClass)
                 }
             }
         }
