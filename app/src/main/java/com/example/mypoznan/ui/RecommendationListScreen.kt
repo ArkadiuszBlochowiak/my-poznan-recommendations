@@ -8,6 +8,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.example.mypoznan.R
@@ -23,10 +24,11 @@ fun RecommendationListScreen(
     onTabPressed: (Category) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val resources = LocalResources.current
     val list = if(uiState.currentCategory == Category.ALL) {
-        LocalRecommendationDataProvider.getAllRecommendations()
+        LocalRecommendationDataProvider.getAllRecommendations(resources)
     } else {
-        LocalRecommendationDataProvider.getCategoryRecommendations(uiState.currentCategory)
+        LocalRecommendationDataProvider.getCategoryRecommendations(uiState.currentCategory, resources)
     }
     val navigationItems: List<NavigationItem> = NavigationItemList.getNavigationList()
 
