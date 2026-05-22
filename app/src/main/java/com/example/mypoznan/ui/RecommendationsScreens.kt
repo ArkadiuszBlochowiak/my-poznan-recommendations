@@ -1,6 +1,7 @@
 package com.example.mypoznan.ui
 
 import android.text.style.TtsSpan
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,9 +32,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.dimensionResource
@@ -57,7 +60,7 @@ fun RecommendationList(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
+        contentPadding = PaddingValues(vertical = dimensionResource(R.dimen.padding_small)),
         verticalArrangement = Arrangement
             .spacedBy(dimensionResource(R.dimen.padding_medium))
     ) {
@@ -285,6 +288,11 @@ fun RecommendationTopBar(
                     )
                 }
             }
+        },
+        colors = if (!isShowingMainPage) {
+            TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.inverseOnSurface)
+        } else {
+            TopAppBarDefaults.topAppBarColors()
         }
     )
 }

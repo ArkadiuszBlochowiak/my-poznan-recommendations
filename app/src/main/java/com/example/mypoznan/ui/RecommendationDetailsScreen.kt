@@ -26,7 +26,6 @@ fun RecommendationDetailsScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.inverseOnSurface),
-        contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
     ) {
         item {
             RecommendationDetails(

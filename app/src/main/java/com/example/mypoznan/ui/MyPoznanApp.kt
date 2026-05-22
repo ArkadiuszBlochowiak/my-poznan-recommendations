@@ -1,11 +1,14 @@
 package com.example.mypoznan.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mypoznan.ui.utils.MyPoznanNavigationType
 
@@ -24,7 +27,15 @@ fun MyPoznanApp(
         else -> MyPoznanNavigationType.BOTTOM_NAVIGATION
     }
 
-    Box(modifier = modifier) {
+    Column (modifier = modifier) {
+        RecommendationTopBar(
+            isShowingMainPage = uiState.isShowingMainPage,
+            currentRecommendation = uiState.currentRecommendation,
+            onBackButtonPressed = {
+                viewModel.resetDetailsView()
+            },
+            modifier = Modifier.background(Color.Red)
+        )
         if (uiState.isShowingMainPage) {
             RecommendationListScreen(
                 uiState = uiState,
