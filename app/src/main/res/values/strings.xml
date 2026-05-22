@@ -7,20 +7,26 @@
     <string name="park">Park</string>
     
     <string name="park_description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
-        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
-        diam fringilla tellus, eu euismod mauris neque at neque.
+        Escape the hustle and bustle and connect with nature through a curated selection of the best
+        parks and outdoor spaces near you. Whether you are looking for a serene spot for a morning
+        jog, a scenic trail for a weekend hike, a lively playground for family fun, or just a quiet
+        bench to relax, this app helps you find your perfect green oasis. Explore detailed overviews
+        of local flora and fauna, check available amenities like pet-friendly areas and picnic
+        spots, and stay updated on seasonal park events. Discover the beauty of the great outdoors,
+        breathe in the fresh air, and plan your next peaceful retreat.
     </string>
     <string name="malta">Malta park</string>
     <string name="solacz">Solacz park</string>
     <string name="cytadela">Cytadela park</string>
 
     <string name="monument_description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
-        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
-        diam fringilla tellus, eu euismod mauris neque at neque.
+        Uncover the stories behind the world\'s most iconic landmarks and hidden historical gems.
+        Whether you are a passionate history buff, a curious traveler, or a local exploring your
+        own city, this app guides you through breathtaking monuments, architectural wonders,
+        and cultural heritage sites. Access fascinating historical insights, visitor tips,
+        and immersive guides that bring the past to life. Filter by historical eras, accessibility,
+        and proximity to plan your perfect sightseeing itinerary. Discover the legends, capture
+        unforgettable views, and connect with the history that shaped our world.
     </string>
     <string name="town_hall">Town hall</string>
     <string name="national_museum">The national museum in Poznan</string>
@@ -28,10 +34,12 @@
     <string name="porta">Porta Posnania</string>
 
     <string name="restaurant_description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
-        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
-        diam fringilla tellus, eu euismod mauris neque at neque.
+        Discover your next favorite dining spot with personalized restaurant recommendations
+        tailored to your taste, budget, and location. Whether you are craving a cozy neighborhood
+        cafe, a vibrant local hotspot, or a fine dining experience, this app connects you with
+        top-rated eateries, real-time reviews, and curated menus. Explore diverse cuisines, filter
+        by your specific dietary preferences, and find the perfect table for any occasion. From
+        quick bites to unforgettable culinary adventures, your next great meal is just a tap away.
     </string>
     <string name="ming_wok">Ming wok</string>
     <string name="stary_mlyn">Stary mlyn</string>
