@@ -41,4 +41,6 @@
 
     <string name="category">Category</string>
     <string name="rating">Rating</string>
+    <string name="category_details">%1$s details</string>
+    <string name="go_back_button">Go back to main page</string>
 </resources>

@@ -4,6 +4,7 @@ import android.text.style.TtsSpan
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material.icons.outlined.Museum
@@ -23,7 +25,10 @@ import androidx.compose.material.icons.outlined.Park
 import androidx.compose.material.icons.outlined.Restaurant
 import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material3.Card
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -244,3 +249,65 @@ fun RecommendationDetailsPreview() {
         )
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun RecommendationTopBar(
+    isShowingMainPage: Boolean,
+    currentRecommendation: Recommendation,
+    modifier: Modifier = Modifier,
+    onBackButtonPressed: () -> Unit = {}
+) {
+    val title = if (isShowingMainPage) {
+        stringResource(R.string.app_name)
+    } else {
+        val categoryName = stringResource(
+            CategoryConfig.getCategoryData(currentRecommendation.category).second
+        )
+        stringResource(R.string.category_details, categoryName)
+    }
+
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = title
+            )
+        },
+        modifier = modifier,
+        navigationIcon = {
+            if (!isShowingMainPage) {
+                IconButton(
+                    onClick = onBackButtonPressed
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(R.string.go_back_button)
+                    )
+                }
+            }
+        }
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecommendationTopBarMainPagePreview() {
+    MyPoznanTheme () {
+        RecommendationTopBar(
+            true,
+            currentRecommendation = LocalRecommendationDataProvider.defaultRecommendation
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecommendationTopBarDetailsPagePreview() {
+    MyPoznanTheme (darkTheme = true) {
+        RecommendationTopBar(
+            false,
+            currentRecommendation = LocalRecommendationDataProvider.defaultRecommendation
+        )
+    }
+}
+
