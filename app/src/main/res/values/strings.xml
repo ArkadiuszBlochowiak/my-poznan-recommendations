@@ -43,4 +43,8 @@
     <string name="rating">Rating</string>
     <string name="category_details">%1$s details</string>
     <string name="go_back_button">Go back to main page</string>
+
+    <string name="bottom_navigation">Bottom navigation</string>
+    <string name="navigation_rail">Navigation rail</string>
+    <string name="navigation_drawer">Navigation drawer</string>
 </resources>

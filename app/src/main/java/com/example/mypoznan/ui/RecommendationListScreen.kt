@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.example.mypoznan.R
@@ -55,7 +56,10 @@ fun RecommendationListScreen(
                         onTabPressed = onTabPressed
                     )
                 }
-            }
+            },
+            modifier = Modifier.testTag(
+                stringResource(R.string.navigation_drawer)
+            )
         ) {
             RecommendationListContent(
                 uiState = uiState,
@@ -101,7 +105,10 @@ fun RecommendationListContent(
             NavigationSideRail(
                 navigationItems = navigationItems,
                 currentTab = uiState.currentCategory,
-                onTabPressed = onTabPressed
+                onTabPressed = onTabPressed,
+                modifier = Modifier.testTag(
+                    stringResource(R.string.navigation_rail)
+                )
             )
         }
         Column(
@@ -118,7 +125,10 @@ fun RecommendationListContent(
                 NavigationBottomBar(
                     navigationItems = navigationItems,
                     currentTab = uiState.currentCategory,
-                    onTabPressed = onTabPressed
+                    onTabPressed = onTabPressed,
+                    modifier = Modifier.testTag(
+                        stringResource(R.string.bottom_navigation)
+                    )
                 )
             }
         }
